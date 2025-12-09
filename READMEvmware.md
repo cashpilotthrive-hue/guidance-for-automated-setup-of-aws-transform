@@ -1,4 +1,6 @@
-Table of Contents
+# Guidance for Automated Setup of AWS Transform for VMware
+
+## Table of Contents
 
 1. [Overview](#overview)
    - [Architecture](#architecture)
