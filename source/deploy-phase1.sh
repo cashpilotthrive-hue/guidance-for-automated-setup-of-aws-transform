@@ -4,8 +4,8 @@
 read -p "Enter stack name [aws-org-setup]: " STACK_NAME
 STACK_NAME=${STACK_NAME:-aws-org-setup}
 
-#read -p "Enter template path [/guidance-for-automating-aws-transformations-vmware-deployment/source/phase1-aws-organizations.yaml]: " TEMPLATE_PATH
-#TEMPLATE_PATH=${TEMPLATE_PATH:-/guidance-for-automating-aws-transformations-vmware-deployment/source/phase1-aws-organizations.yaml}
+#read -p "Enter template path [/guidance-for-automated-setup-of-aws-transform/source/phase1-aws-organizations.yaml]: " TEMPLATE_PATH
+#TEMPLATE_PATH=${TEMPLATE_PATH:-/guidance-for-automated-setup-of-aws-transform/source/phase1-aws-organizations.yaml}
 read -p "Please enter Phase 1 template path [./phase1-aws-organizations.yaml]: " TEMPLATE_PATH
 TEMPLATE_PATH=${TEMPLATE_PATH:-./phase1-aws-organizations.yaml}
 echo "CHECKING TEMPLATE_PATH: $TEMPLATE_PATH"

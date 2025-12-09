@@ -155,7 +155,7 @@ Clone Guidance repository
 2. Clone the repository:
 
    ```bash
-   git clone https://github.com/aws-solutions-library-samples/guidance-for-automating-aws-transformations-vmware-deployment
+   git clone https://github.com/aws-solutions-library-samples/guidance-for-automated-setup-of-aws-transform
    ```
 
 Phase 1: Set up AWS Organizations
@@ -165,7 +165,7 @@ Phase 1: Set up AWS Organizations
 1. Change directory to the source folder inside the guidance repository:
 
    ```bash
-   cd guidance-for-automating-aws-transformations-vmware-deployment/source
+   cd guidance-for-automated-setup-of-aws-transform/source
    ```
 
 2. Start by running the first shell script. This creates an AWS Organization with all features enabled.
@@ -178,13 +178,13 @@ Phase 1: Set up AWS Organizations
    ```bash
    source % ./deploy-phase1.sh
    Enter stack name [aws-org-setup]: aws-org-setup
-   Enter template path [/guidance-for-automating-aws-transformations-vmware-deployment/source/phase1-aws-organizations.yaml]:
+   Enter template path [/guidance-for-automated-setup-of-aws-transform/source/phase1-aws-organizations.yaml]:
    ```
 
    PowerShell:
 
    ```powershell
-       PS C:\git\aws\guidance-for-automating-aws-transformations-vmware-deployment\source> .\deploy-phase1.ps1
+       PS C:\git\aws\guidance-for-automated-setup-of-aws-transform\source> .\deploy-phase1.ps1
        Enter stack name [aws-org-setup]:
        Enter template path [phase1-aws-organizations.yaml]:
    ```
@@ -212,7 +212,7 @@ Phase 2: Set up IAM Identity Center
    ```bash
        source % ./deploy-phase2.sh
        Enter stack name [aws-transform-setup]:
-       Enter template path: [/guidance-for-automating-aws-transformations-vmware-deployment/source/phase2-idc.yaml]:
+       Enter template path: [/guidance-for-automated-setup-of-aws-transform/source/phase2-idc.yaml]:
        Enter AWS account number: 1234567XXXXXX
        Enter admin email address: admin@amazon.com
        Enter Identity Center ID: ssoins-1234a123b1d5ab3f
@@ -223,7 +223,7 @@ Phase 2: Set up IAM Identity Center
    PowerShell:
 
    ```powershell
-       PS C:\git\aws\guidance-for-automating-aws-transformations-vmware-deployment\source> .\deploy-phase2.ps1
+       PS C:\git\aws\guidance-for-automated-setup-of-aws-transform\source> .\deploy-phase2.ps1
        Enter stack name [aws-transform-setup]:
        Enter template path [phase2-idc.yaml]:
        Enter AWS account number: 1234567XXXXXXX
