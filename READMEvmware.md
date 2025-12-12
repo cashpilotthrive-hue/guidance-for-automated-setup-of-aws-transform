@@ -13,10 +13,11 @@
 4. [Deployment Steps](#deployment-steps)
 5. [Deployment Validation](#deployment-validation)
 6. [Running the Guidance](#running-the-guidance)
-7. [FAQ, known issues, additional considerations, and limitations](#faq-known-issues-additional-considerations-and-limitations)
+7. [Troubleshooting](#troubleshooting)
+8. [FAQ, known issues, additional considerations, and limitations](#faq-known-issues-additional-considerations-and-limitations)
    - [Service Quotas](#service-quotas)
-8. [Cleanup](#cleanup)
-9. [Authors](#authors-optional)
+9. [Cleanup](#cleanup)
+10. [Authors](#authors)
 
 ## Overview
 
@@ -62,6 +63,8 @@ Below is the Reference architecture for the guidance showing the core and suppor
 
 ![architecture](assets/aws_transform_vmware_ref-arch1.jpg)
 
+**Figure 1. Automated Setup of AWS Transform for .NET - Standard .NET Transform process**
+
 1. Customer VMware environment hosts the workloads to be migrated. RVTools can be used along with optional import/export functionality for customers running VMware NSX.
 2. AWS agent and agentless Discovery agents used (in addition to or instead of RVTools) to gather and collect data and dependencies for migration. AWS Replication Agent is used to migrate virtual machines to AWS.
 3. AWS Transform for VMware discovery workspaces are available globally.
@@ -71,6 +74,8 @@ Below is the Reference architecture for the guidance showing the core and suppor
 6. As part of AWS Transform, the Wave Planning capability uses Graph Neural Networks to analyze application dependencies and plan migration waves.
 
 ![architecture2](assets/aws_transform_vmware_ref-arch2.jpg)
+
+**Figure 2. Automated Setup of AWS Transform for .NET - Web Experience Specific**
 
 7. The AWS Migration Planning account hosts AWS Application Discovery Service (ADS) to collect, store, and process detailed infrastructure and application data for migration planning. The Discovery account provides secure isolation of collected infrastructure data and maintains separation of discovery and migration activities.
 8. AWS Key Management Service (KMS) encrypts data using AWS managed keys by default or optional Customer Managed Keys (CMK)
@@ -84,6 +89,8 @@ Below is the Reference architecture for the guidance showing the core and suppor
 16. AWS KMS encrypts Discovery account S3 buckets that store source environment data.
 
 ![architecture3](assets/aws_transform_vmware_ref-arch3.jpg)
+
+**Figure 3. Automated Setup of AWS Transform for .NET - Supporting services**
 
 17. **NOTE**: For the most up-to-date information on supported Regions, please refer to [AWS Services by Region](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)
 18. The AWS Target/Provisioning Account hosts migrated production workloads and applications.
@@ -148,7 +155,7 @@ Users should refer to the [AWS Transform security documentation](https://docs.aw
 
 ## Deployment Steps
 
-Clone Guidance repository
+### Clone Guidance repository
 
 1. Log in to your AWS account on your CLI/shell through your preferred authentication provider.
 
@@ -158,7 +165,7 @@ Clone Guidance repository
    git clone https://github.com/aws-solutions-library-samples/guidance-for-automated-setup-of-aws-transform
    ```
 
-Phase 1: Set up AWS Organizations
+### Phase 1: Set up AWS Organizations
 
 > Note : If you already have AWS Organizations enabled in your Management account, you can skip Phase 1.
 
@@ -195,7 +202,9 @@ Phase 1: Set up AWS Organizations
 
 ![enable_identity_center](assets/enable_identity_center.png)
 
-Phase 2: Set up IAM Identity Center
+**Figure 4. Enable an Organization instance of IAM Identity Center**
+
+### Phase 2: Set up IAM Identity Center
 
 1. After enabling IAM Identity Center manually and waiting for updates to propagate, run the second BASH script
 
@@ -243,47 +252,93 @@ Phase 2: Set up IAM Identity Center
 
 ## Deployment Validation
 
-1. Open CloudFormation in AWS console and verify the status of the stacks
+- Open CloudFormation in AWS console and verify the status of the stacks
 
-![cfn_stack](assets/cfn_stack.png)
+![CloudFormation Stack Status](assets/cfn_stack.png)
 
-2. Open Identity Center and verify the created groups created:
+**Figure 5. Guidance Cloud Formation Stack Deployment Status**
 
-![idc_group](assets/idc_group.png)
+- Open Identity Center and verify the created groups:
 
-3. Open Identity Center and select Multi Account Permissions → AWS accounts. Select Assign Users or Groups
+![Identity Center Groups](assets/idc_group.png)
 
-![idc_awsaccounts](assets/idc_awsaccounts.png)
+**Figure 6. Verify Identity Center Groups**
 
-4. Open Identity Center and select Multi Account Permissions → AWS accounts. Select Assign Users or Groups
+- Open Identity Center and select Multi Account Permissions → AWS accounts. Select Assign Users or Groups
 
-![idc_users](assets/idc_group.png)
+![IDC AWS Accounts](assets/idc_awsaccounts.png)
 
-5. Select Admin IDC Group
+**Figure 7. IDC AWS Accounts Select Assign Users or Groups**
 
-![select_group](assets/select_group.png)
+- Select Admin IDC Group
 
-6. Select Admin Permission Set
+![Select Group](assets/select_group.png)
 
-![select_set](assets/select_set.png)
+**Figure 8. Select Admin IDC Group**
 
-7. Submit. Repeat for User group/permission set.
+- Select Admin Permission Set
 
-![review_and_submit](assets/review_and_submit.png)
+![Select Permission Set](assets/select_set.png)
 
-8. Review the admin group and verify created user
+**Figure 9. Select Admin IDC Permission Set**
 
-![admin_user](assets/admin_user.png)
+- Submit. Repeat for User group/permission set.
 
-9. Review the user group and verify created user
+![Review and Submit](assets/review_and_submit.png)
 
-10. Make sure the groups can be added to AWS Transform
+**Figure 10. Submit. Repeat for User IDC Group and Permission Set**
 
-![transform_group](assets/transform_group.png)
+- Review the admin group and verify created user
 
-11. Make sure the start URL can be accessed by Admin user
+![Admin User](assets/admin_user.png)
 
-![transform start](assets/transform_start.png)
+**Figure 11. View the Administrators Group and Verify Created User**
+
+- Make sure the groups can be added to AWS Transform
+
+![Transform Group](assets/transform_group.png)
+
+**Figure 12. Verify that IDC groups can be added to AWS Transform**
+
+- Make sure the start URL can be accessed by Admin user
+
+![Transform Start](assets/transform_start.png)
+
+**Figure 13. Verify that Start URL can be accessed by Administrator User**
+
+At this point all of the pre-requisites are complete and you are ready now to use AWS Transform for .NET. Follow the steps [here](https://docs.aws.amazon.com/transform/latest/userguide/what-is-transform.html) to continue
+
+## Running the Guidance
+
+Please see the [AWS official documentation](https://docs.aws.amazon.com/transform/latest/userguide/what-is-transform.html) of AWS Transform for .NET for details of using the Service.
+
+Before starting your own .NET modernization project, we recommend completing the [AWS Transform for .NET workshop](https://catalog.workshops.aws/transform-dotnet). In this workshop, gain hands-on experience porting a .NET Framework application to cross-platform .NET. Use AWS Transform for .NET, a modernization service powered by generative AI that significantly reduces the time to migrate applications from Windows Server to Linux. Learn how migrating to Linux helps you avoid additional licensing fees and gain performance and security benefits.
+
+Please feel free to explore our [self-guided demo](https://aws.storylane.io/demo/5xy6f98m17hm) to learn how AWS Transform for .NET accelerates large-scale modernization from .NET Framework to cross-platform .NET.
+
+### Troubleshooting
+
+In case when either of the guidance deployment phases described above fail, you should start troubleshooting their deployment from the CloudFormation console that would show the failed step in the "Events" tab as illustrated in the example below:
+
+![Phase 2 Deployment Failed](assets/phase2_stack_creation_failed.jpg)
+
+**Figure 14. Example of failed phase 2 Cloud Formation deployment**
+
+To determine the root cause, follow the specified log group in the Cloud Watch service area from the error message and locate an event that contains an Error log message as illustrated below:
+
+![Phase 2 CloudWatch Log](assets/phase2_stack_creation_failed_cloudwatch_log_details.jpg)
+
+**Figure 15. Example of CloudWatch log with a message for failed phase 2 Cloud Formation deployment**
+
+Then you can examine the detailed message and determine the root cause of an error:
+
+```
+"Data": {
+        "Error": "An error occurred (AccessDeniedException) when calling the CreateGroupMembership operation: User: arn:aws:sts::1234567XXXXXXX:assumed-role/aws-transform-setup-IdentityCenterLambdaRole-WriIgQEV4Wx9/aws-transform-setup-AddUserToGroupFunction-Z1ugUVrdHWr7 is not authorized to perform: identitystore:CreateGroupMembership on resource: arn:aws:identitystore:::group/6468d408-50b1-7045-2426-80200c9a324f because no identity-based policy allows the identitystore:CreateGroupMembership action, User: arn:aws:sts::354918380621:assumed-role/aws-transform-setup-IdentityCenterLambdaRole-WriIgQEV4Wx9/aws-transform-setup-AddUserToGroupFunction-Z1ugUVrdHWr7 is not authorized to perform: identitystore:CreateGroupMembership on resource: arn:aws:identitystore:::user/f458b4c8-f081-7031-262c-791e8a173a98 because no identity-based policy allows the identitystore:CreateGroupMembership action"
+    }
+```
+
+and make necessary updates. In this example the issue is resolved by adding necessary IAM permission policy.
 
 ## FAQ, known issues, additional considerations, and limitations
 

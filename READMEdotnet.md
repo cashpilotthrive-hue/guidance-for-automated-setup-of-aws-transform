@@ -13,10 +13,11 @@
 4. [Deployment Steps](#deployment-steps)
 5. [Deployment Validation](#deployment-validation)
 6. [Running the Guidance](#running-the-guidance)
-7. [FAQ, known issues, additional considerations, and limitations](#faq-known-issues-additional-considerations-and-limitations)
+7. [Troubleshooting](#troubleshooting)
+8. [FAQ, known issues, additional considerations, and limitations](#faq-known-issues-additional-considerations-and-limitations)
    - [Service Quotas](#service-quotas)
-8. [Cleanup](#cleanup)
-9. [Authors](#authors)
+9. [Cleanup](#cleanup)
+10. [Authors](#authors)
 
 ## Overview
 
@@ -72,7 +73,7 @@ You can modernize your .NET code by using either the AWS Transform web applicati
 
 Below is the Reference architecture for the guidance showing the core and supporting AWS services:
 
-![Figure 1: Standard .NET Transform process](assets/aws_transform_dotnet_ref-arch1.jpg)
+![Figure 1: Standard .NET Transform process](assets/aws_transform_dotnet_ref-arch1.png)
 
 **Figure 1. Automated Setup of AWS Transform for .NET - Standard .NET Transform process**
 
@@ -84,7 +85,7 @@ Below is the Reference architecture for the guidance showing the core and suppor
 6. Use the Amazon Q Developer extension in the Developer IDE to download the code directly from AWS Transform .Net.
 7. AWS Transform's specialized agent analyzes incompatibilities, generates and replaces code to automatically port applications from outdated C# to Linux-compatible versions, upgrading .NET Framework to cross-platform .NET, and updating NuGet packages and APIs.
 
-![Figure 2: Web Experience Specific](assets/aws_transform_dotnet_ref-arch2.jpg)
+![Figure 2: Web Experience Specific](assets/aws_transform_dotnet_ref-arch2.png)
 
 **Figure 2. Automated Setup of AWS Transform for .NET - Web Experience Specific**
 
@@ -92,7 +93,7 @@ Below is the Reference architecture for the guidance showing the core and suppor
 2. The Amazon Elastic Compute Cloud (Amazon EC2) instance that hosts the Sandbox environment clones the repository and processes transformations in isolation, with one sandbox per job to prevent cross-contamination.
 3. After completing the transformation, the changes are committed to the repository in a new branch.
 
-![Figure 3: Supporting services](assets/aws_transform_dotnet_ref-arch3.jpg)
+![Figure 3: Supporting services](assets/aws_transform_dotnet_ref-arch3.png)
 
 **Figure 3. Automated Setup of AWS Transform for .NET - Supporting services**
 
