@@ -63,7 +63,7 @@ Below is the Reference architecture for the guidance showing the core and suppor
 
 ![architecture](assets/aws_transform_vmware_ref-arch1.jpg)
 
-**Figure 1. Automated Setup of AWS Transform for .NET - Standard .NET Transform process**
+**Figure 1. Automated Setup of AWS Transform for VMware - environment setup and access configuration**
 
 1. Customer VMware environment hosts the workloads to be migrated. RVTools can be used along with optional import/export functionality for customers running VMware NSX.
 2. AWS agent and agentless Discovery agents used (in addition to or instead of RVTools) to gather and collect data and dependencies for migration. AWS Replication Agent is used to migrate virtual machines to AWS.
@@ -75,7 +75,7 @@ Below is the Reference architecture for the guidance showing the core and suppor
 
 ![architecture2](assets/aws_transform_vmware_ref-arch2.jpg)
 
-**Figure 2. Automated Setup of AWS Transform for .NET - Web Experience Specific**
+**Figure 2. Automated Setup of AWS Transform for VMware - data collection and initial migration planning**
 
 7. The AWS Migration Planning account hosts AWS Application Discovery Service (ADS) to collect, store, and process detailed infrastructure and application data for migration planning. The Discovery account provides secure isolation of collected infrastructure data and maintains separation of discovery and migration activities.
 8. AWS Key Management Service (KMS) encrypts data using AWS managed keys by default or optional Customer Managed Keys (CMK)
@@ -90,7 +90,7 @@ Below is the Reference architecture for the guidance showing the core and suppor
 
 ![architecture3](assets/aws_transform_vmware_ref-arch3.jpg)
 
-**Figure 3. Automated Setup of AWS Transform for .NET - Supporting services**
+**Figure 3. Automated Setup of AWS Transform for VMware - workload migration and network conversion to AWS**
 
 17. **NOTE**: For the most up-to-date information on supported Regions, please refer to [AWS Services by Region](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)
 18. The AWS Target/Provisioning Account hosts migrated production workloads and applications.
@@ -306,15 +306,15 @@ Users should refer to the [AWS Transform security documentation](https://docs.aw
 
 **Figure 13. Verify that Start URL can be accessed by Administrator User**
 
-At this point all of the pre-requisites are complete and you are ready now to use AWS Transform for .NET. Follow the steps [here](https://docs.aws.amazon.com/transform/latest/userguide/what-is-transform.html) to continue
+At this point all of the pre-requisites are complete and you are ready now to use AWS Transform for VMware. Follow the steps [here](https://docs.aws.amazon.com/transform/latest/userguide/what-is-transform.html) to continue
 
 ## Running the Guidance
 
-Please see the [AWS official documentation](https://docs.aws.amazon.com/transform/latest/userguide/what-is-transform.html) of AWS Transform for .NET for details of using the Service.
+Please see the [AWS official documentation](https://docs.aws.amazon.com/transform/latest/userguide/what-is-transform.html) of AWS Transform for VMware for details of using the Service.
 
-Before starting your own .NET modernization project, we recommend completing the [AWS Transform for .NET workshop](https://catalog.workshops.aws/transform-dotnet). In this workshop, gain hands-on experience porting a .NET Framework application to cross-platform .NET. Use AWS Transform for .NET, a modernization service powered by generative AI that significantly reduces the time to migrate applications from Windows Server to Linux. Learn how migrating to Linux helps you avoid additional licensing fees and gain performance and security benefits.
+Before starting your own VMware modernization project, we recommend completing the [AWS Transform for VMware workshop](https://catalog.workshops.aws/transform-vmware). In this workshop, you can gain hands-on experience with configuration, planning and assessment of VMware migration using AWS Transform. 
 
-Please feel free to explore our [self-guided demo](https://aws.storylane.io/demo/5xy6f98m17hm) to learn how AWS Transform for .NET accelerates large-scale modernization from .NET Framework to cross-platform .NET.
+Please feel free to explore our [self-guided demo](https://app.storylane.io/share/ulhid0hbuxvd) to learn how AWS Transform for VMware accelerates large-scale migration of VMware based workloads to AWS.
 
 ### Troubleshooting
 
@@ -337,7 +337,6 @@ Then you can examine the detailed message and determine the root cause of an err
         "Error": "An error occurred (AccessDeniedException) when calling the CreateGroupMembership operation: User: arn:aws:sts::1234567XXXXXXX:assumed-role/aws-transform-setup-IdentityCenterLambdaRole-WriIgQEV4Wx9/aws-transform-setup-AddUserToGroupFunction-Z1ugUVrdHWr7 is not authorized to perform: identitystore:CreateGroupMembership on resource: arn:aws:identitystore:::group/6468d408-50b1-7045-2426-80200c9a324f because no identity-based policy allows the identitystore:CreateGroupMembership action, User: arn:aws:sts::354918380621:assumed-role/aws-transform-setup-IdentityCenterLambdaRole-WriIgQEV4Wx9/aws-transform-setup-AddUserToGroupFunction-Z1ugUVrdHWr7 is not authorized to perform: identitystore:CreateGroupMembership on resource: arn:aws:identitystore:::user/f458b4c8-f081-7031-262c-791e8a173a98 because no identity-based policy allows the identitystore:CreateGroupMembership action"
     }
 ```
-
 and make necessary updates. In this example the issue is resolved by adding necessary IAM permission policy.
 
 ## FAQ, known issues, additional considerations, and limitations
@@ -350,7 +349,7 @@ AWS Transform enforces specific service quotas, please review [AWS Transform Ser
 
 When you no longer need to use the guidance, you should delete the AWS resources deployed in order to prevent ongoing charges for their usage.
 
-In the AWS Management Console, navigate to CloudFormation and locate the 2 guidance stacks deployed (typcally named aws-org-setup and aws-transform-setup as shown in the Deployment section above). Starting with the most recent stack (not including any nested stacks), select the stack and click Delete button:
+In the AWS Management Console, navigate to CloudFormation and locate the 2 guidance stacks deployed (typcally named `aws-org-setup` and `aws-transform-setup` as shown in the **Deployment** section above). Starting with the most recent stack (not including any nested stacks), select it and click `Delete` button:
 
 ![cleanupcfn](assets/cleanup_cfn.png)
 
